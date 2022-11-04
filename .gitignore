@@ -16,3 +16,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+tailwind.config.js
+vite.config.js
+package.json
+package-lock.json
+.gitattributes
+postcss.config.js
