@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/create-card', [CardController::class, "showCards"]);
+Route::get('/create-card', [CardController::class, "getCardsData"]);
 
 Route::post('/create-card', [CardController::class, "createCard"])->name('create-card');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use Illuminate\Http\Request;
 use App\Models\Set;
 use Illuminate\Support\Facades\Auth;
@@ -17,12 +18,10 @@ class SetController extends Controller
 
     public function createSet(Request $request){
         $name = $request->name;
-        $description = $request->description;
 
         $newSet = new Set();
         $newSet->name = $name;
         $newSet->userID = Auth::id();
-        $newSet->description = $description;
         $newSet->save();
 
         return redirect()->back()->with('success', 'new set created.');
@@ -35,24 +34,21 @@ class SetController extends Controller
 
     public function updateSet(Request $request){
         $request->validate([
-            'id' => 'required',
             'name' => 'required',
-            'description' => 'required'
         ]);
         $id = $request->id;
         $name = $request->name;
-        $description = $request->description;
 
         Set::where('id', '=', $id)->update([
             'name' => $name,
-            'description' => $description
         ]);
-        return dd($request);
-        // return redirect('/create-set')->with('success', 'set updated.');
+        
+        return redirect('/create-set')->with('success', 'set changed.');
     }
 
     public function deleteSet($id){
         Set::where('id', '=', $id)->delete();
+        Card::where('setID', '=', $id)->delete();
         return redirect('/create-set')->with('success', 'set deleted.');
     }
 }

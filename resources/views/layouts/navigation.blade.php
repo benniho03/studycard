@@ -12,12 +12,12 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('create-card')" :active="request()->routeIs('create-card')">
-                        {{ __('Create Card') }}
+                        {{ __('Cards') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('create-set')" :active="request()->routeIs('create-set')">
-                        {{ __('Create Set') }}
+                        {{ __('Sets') }}
                     </x-nav-link>
                 </div>
             </div>

@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\DB;
 class CardController extends Controller
 {
     
-    public function showCards(){
-        $data = Card::get();
+    public function getCardsData(){
+        $data = [
+            "cards" => Card::get(),
+            "sets" => Set::get()
+        ];
         return view("/createCard", compact("data"));
     }
-
 
     public function createCard(Request $request){
         $request->validate([
@@ -31,6 +33,7 @@ class CardController extends Controller
         $newCard = new Card();
         $newCard->question = $question;
         $newCard->answer = $answer;
+        $newCard->step = 1;
         $newCard->setID = DB::table('sets')->where('name', '=', $set)->value('id');
         $newCard->save();
 
