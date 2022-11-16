@@ -6,15 +6,15 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col-8 card-container d-grid place-items-center border border-dark p-5">
+            <div class="col-8 card-container d-grid place-items-center border border-3 border-dark p-5">
                 <p class="fs-3 text-center" id="card-text">Hi</p>
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-6 d-flex justify-content-center">
+            <div class="col-6 d-flex justify-content-end">
                 <button class="btn btn-success">We lit</button>
             </div>
-            <div class="col-6 d-flex justify-content-center">
+            <div class="col-6 d-flex justify-content-start">
                 <button class="btn btn-danger">Big L</button>
             </div>
         </div>

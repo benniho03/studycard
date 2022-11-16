@@ -25,10 +25,24 @@ Route::get('/dashboard', function () {
 
 Route::get('/create-card', [CardController::class, "showCards"]);
 
-Route::post('/create-card', [CardController::class, "createCard"]);
+Route::post('/create-card', [CardController::class, "createCard"])->name('create-card');
 
-Route::post('/create-set', [SetController::class, "createSet"]);
+Route::get('/edit-card/{id}', [CardController::class, "editCard"]);
+
+Route::post('/update-card', [CardController::class, "updateCard"])->name('update-card');
+
+Route::get('/delete-card/{id}', [CardController::class, "deleteCard"]);
+
+// Sets
 
 Route::get('/create-set', [SetController::class, "showSets"]);
+
+Route::post('/create-set', [SetController::class, "createSet"])->name('create-set');
+
+Route::get('/edit-set/{id}', [SetController::class, "editSet"]);
+
+Route::post('/update-set', [SetController::class, "updateSet"]);
+
+Route::get('/delete-set/{id}', [SetController::class, "deleteSet"]);
 
 require __DIR__.'/auth.php';

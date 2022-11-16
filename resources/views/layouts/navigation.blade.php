@@ -11,8 +11,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('create-card')" :active="request()->routeIs('create-card')">
+                        {{ __('Create Card') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('create-set')" :active="request()->routeIs('create-set')">
+                        {{ __('Create Set') }}
                     </x-nav-link>
                 </div>
             </div>

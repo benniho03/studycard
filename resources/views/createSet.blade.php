@@ -24,6 +24,7 @@
                     <th>ID</th>
                     <th>name</th>
                     <th>description</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,8 @@
                         <td>{{ $entry->id }}</td>
                         <td>{{ $entry->name }}</td>
                         <td>{{ $entry->description }}</td>
+                        <td><a class="btn btn-secondary" href="{{url('edit-set')."/".$entry->id}}">Edit</a><a href="{{url('delete-set')."/".$entry->id}}" class="btn btn-danger">Delete</a></td>
+
                     </tr>
                 @endforeach
             </tbody>
