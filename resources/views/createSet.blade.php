@@ -7,10 +7,6 @@
                     <label>Name</label>
                     <input name="name" class="form-control col-6 border" type="text" placeholder="name">
                 </div>
-                <div class="col-6">
-                    <label>Description</label>
-                    <input name="description" class="form-control col-6 border" type="text" placeholder="description">
-                </div>
             </div>
             <button type="submit" class="btn">Create</button>
             <a href="{{ url('/') }}" class="btn btn-dangerous">Back</a>

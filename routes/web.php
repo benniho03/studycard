@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\SetController;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +17,15 @@ use App\Http\Controllers\SetController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('/');
+// Route::get('/', function () {
+//     return view('home');
+// })->middleware(['auth', 'verified'])->name('/');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [CardController::class, "startWelcomePage"])->middleware(['auth', 'verified'])->name('/');
 
 Route::get('/create-card', [CardController::class, "getCardsData"]);
 
@@ -44,5 +48,10 @@ Route::get('/edit-set/{id}', [SetController::class, "editSet"]);
 Route::post('/update-set', [SetController::class, "updateSet"]);
 
 Route::get('/delete-set/{id}', [SetController::class, "deleteSet"]);
+
+//AJAX
+
+Route::get("fetch-cards", [CardController::class, "fetchCards"]);
+
 
 require __DIR__.'/auth.php';

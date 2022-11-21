@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Card;
 use App\Models\Set;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\DB;
 
 
@@ -71,4 +72,24 @@ class CardController extends Controller
         Card::where('cardID', '=', $id)->delete();
         return redirect('/create-card')->with('success', 'card deleted.');
     }
+
+    //AJAX
+
+    public function fetchCards(Request $request){
+        $setID = DB::table('sets')->where('name', '=', $request->set)->value('id'); // gets ID of set name
+        $cards = Card::where('setID', '=', $setID)->get();
+        return response()->json([
+            'cards' => $cards,
+            'hi' => "test"
+        ]);
+    }
+
+    public function startWelcomePage(){
+        $data = [
+            "sets" => Set::get(),
+            "cars" => Card::Get()
+        ];
+        return view("home", compact("data"));
+    }
+
 }
