@@ -3,23 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\SetController;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Redis;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('home');
-// })->middleware(['auth', 'verified'])->name('/');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,31 +10,32 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [CardController::class, "startWelcomePage"])->middleware(['auth', 'verified'])->name('/');
 
-Route::get('/create-card', [CardController::class, "getCardsData"]);
+Route::get('/create-card', [CardController::class, "getCardsData"])->middleware(['auth', 'verified']);
 
 Route::post('/create-card', [CardController::class, "createCard"])->name('create-card');
 
-Route::get('/edit-card/{id}', [CardController::class, "editCard"]);
+Route::get('/edit-card/{id}', [CardController::class, "editCard"])->middleware(['auth', 'verified']);
 
-Route::post('/update-card', [CardController::class, "updateCard"])->name('update-card');
+Route::post('/update-card', [CardController::class, "updateCard"])->middleware(['auth', 'verified'])->name('update-card');
 
-Route::get('/delete-card/{id}', [CardController::class, "deleteCard"]);
+Route::get('/delete-card/{id}', [CardController::class, "deleteCard"])->middleware(['auth', 'verified']);
 
 // Sets
 
-Route::get('/create-set', [SetController::class, "showSets"]);
+Route::get('/create-set', [SetController::class, "showSets"])->middleware(['auth', 'verified']);
 
-Route::post('/create-set', [SetController::class, "createSet"])->name('create-set');
+Route::post('/create-set', [SetController::class, "createSet"])->middleware(['auth', 'verified'])->name('create-set');
 
-Route::get('/edit-set/{id}', [SetController::class, "editSet"]);
+Route::get('/edit-set/{id}', [SetController::class, "editSet"])->middleware(['auth', 'verified']);
 
-Route::post('/update-set', [SetController::class, "updateSet"]);
+Route::post('/update-set', [SetController::class, "updateSet"])->middleware(['auth', 'verified']);
 
-Route::get('/delete-set/{id}', [SetController::class, "deleteSet"]);
+Route::get('/delete-set/{id}', [SetController::class, "deleteSet"])->middleware(['auth', 'verified']);
 
 //AJAX
 
-Route::get("fetch-cards", [CardController::class, "fetchCards"]);
+Route::get("fetch-cards", [CardController::class, "fetchCards"])->middleware(['auth', 'verified']);
 
+Route::post('increment-step', [CardController::class, "incrementStep"])->name('increment-step')->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

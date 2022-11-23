@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Card;
 use App\Models\Set;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\DB;
 
 
@@ -42,7 +41,12 @@ class CardController extends Controller
     }
 
     public function editCard($id){
-        $data = Card::where('cardID', '=', $id)->first();
+        $cardInfo = Card::where('cardID', '=', $id)->first();
+        $sets = Set::get();
+        $data = [
+            'card' => $cardInfo,
+            'sets' => $sets
+        ];
         return view('/editCard', compact('data'));
     }
 
@@ -77,11 +81,8 @@ class CardController extends Controller
 
     public function fetchCards(Request $request){
         $setID = DB::table('sets')->where('name', '=', $request->set)->value('id'); // gets ID of set name
-        $cards = Card::where('setID', '=', $setID)->get();
-        return response()->json([
-            'cards' => $cards,
-            'hi' => "test"
-        ]);
+        $cards = Card::where('setID', '=', $setID)->where('step', '<=', 3)->get();
+        return response($cards);
     }
 
     public function startWelcomePage(){
@@ -90,6 +91,26 @@ class CardController extends Controller
             "cars" => Card::Get()
         ];
         return view("home", compact("data"));
+    }
+
+    public function incrementStep(Request $request){
+        $request->validate([
+            'id' => 'required',
+        ]);
+        $id = $request->id;
+        $question = $request->question;
+        $answer = $request->answer;
+        $setID = $request->setID;
+        $step = Card::where('cardID', '=', $id)->value('step');
+
+        Card::where('cardID', '=', $id)->update([
+            'question' => $question,
+            'answer' => $answer,
+            'setID' => $setID,
+            'step' => $step +1
+        ]);
+
+        return response('worked');
     }
 
 }
