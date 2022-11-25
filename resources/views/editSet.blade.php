@@ -14,7 +14,7 @@
                     <input name="name" class="form-control col-6 border" type="text" placeholder="Name" value={{$data->name}}>
                 </div>
             </div>
-            <button type="submit" class="btn">Apply</button>
+            <button type="submit" class="btn btn-primary bg-primary">Apply</button>
             <a href="{{ url('/create-set') }}" class="btn btn-dangerous">Back</a>
         </form>
     </div>

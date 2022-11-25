@@ -8,12 +8,12 @@
                     <input name="name" class="form-control col-6 border" type="text" placeholder="name">
                 </div>
             </div>
-            <button type="submit" class="btn">Create</button>
-            <a href="{{ url('/') }}" class="btn btn-dangerous">Back</a>
+            <button type="submit" class="btn btn-primary bg-primary mt-1">Create</button>
+            <a href="{{ url('/') }}" class="btn btn-dangerous bg-dangerous mt-1">Back</a>
         </form>
     </div>
 
-    <div class="container">
+    <div class="container mt-3">
         <table class="table table-striped table-dark">
             <thead>
                 <tr>

@@ -27,7 +27,7 @@
                     </select>
                 </div>
             </div>
-            <button type="submit" class="btn">Create</button>
+            <button type="submit" class="btn btn-primary bg-primary">Create</button>
             <a href="{{ url('/') }}" class="btn btn-dangerous">Back</a>
         </form>
     </div>

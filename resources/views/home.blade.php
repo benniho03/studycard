@@ -21,19 +21,15 @@
                 <p class="fs-3 text-center" id="card-text">Choose a set of your cards!</p>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-4 d-flex justify-content-end">
-                <button id="right-button" class="btn btn-success">
+        <div class="row mt-3 d-flex justify-content-center">
+            <div class="col-4 d-flex justify-content-around">
+                <button id="right-button" class="btn btn-success bg-success">
                     <span class="mt-1 material-symbols-outlined">done</span>
                 </button>
-            </div>
-            <div class="col-4 d-flex justify-content-center">
-                <button id="show-button" class="btn btn-secondary">
+                <button id="show-button" class="btn btn-secondary bg-secondary">
                     <span class="material-symbols-outlined">autorenew</span>
                 </button>
-            </div>
-            <div class="col-4 d-flex justify-content-start">
-                <button id="wrong-button" class="btn btn-danger">
+                <button id="wrong-button" class="btn btn-danger bg-danger">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
